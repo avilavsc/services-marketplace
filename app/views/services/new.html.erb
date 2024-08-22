@@ -1,0 +1,14 @@
+<h1>Publicar Serviço</h1>
+
+<%= form_with model: @service do |form| %>
+  <%= form.label :title, "Título" %>
+  <%= form.text_field :title %>
+
+  <%= form.label :description, "Descrição" %>
+  <%= form.text_area :description %>
+
+  <%= form.label :price, "Preço" %>
+  <%= form.number_field :price, step: 0.01 %>
+
+  <%= form.submit "Publicar" %>
+<% end %>

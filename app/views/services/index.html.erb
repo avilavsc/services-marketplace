@@ -1,0 +1,13 @@
+<h1>Serviços Disponíveis</h1>
+
+<%= form_with url: services_path, method: :get do |form| %>
+  <%= form.label :search, "Buscar Serviços" %>
+  <%= form.text_field :search, value: params[:search] %>
+  <%= form.submit "Buscar" %>
+<% end %>
+
+<% @services.each do |service| %>
+  <h2><%= link_to service.title, service %></h2>
+  <p><%= number_to_currency(service.price) %></p>
+  <p><%= truncate(service.description, length: 100) %></p>
+<% end %>
