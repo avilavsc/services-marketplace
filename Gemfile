@@ -59,5 +59,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
-# Authentication
+# Use Devise for authentication [https://github.com/heartcombo/devise]
 gem "devise"
+
+# Search with ransack [https://activerecord-hackery.github.io/ransack]
+gem "ransack"

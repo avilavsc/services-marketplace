@@ -3,8 +3,8 @@ class ServicesController < ApplicationController
   before_action :set_service, only: [ :show ]
 
   def index
-    @services = Service.all
-    @services = @services.where("title LIKE ?", "%#{params[:search]}") if params[:search]
+    @q = Service.ransack(params[:q])
+    @services = @q.result
   end
 
   def show
