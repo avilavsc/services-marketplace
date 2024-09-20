@@ -1,0 +1,10 @@
+<h1>Contrato de Serviço</h1>
+
+<h2>Serviço</h2>
+<p>Título: <%= @contract.service.title %></p>
+<p>Descrição: <%= @contract.service.description %></p>
+<p>Prestador: <%= @contract.service.user.email %></p>
+
+<h2>Pagamento</h2>
+<p>Situação: <%= @contract.status %></p>
+<p>Valor: <%= number_to_currency @contract.service.price %></p>

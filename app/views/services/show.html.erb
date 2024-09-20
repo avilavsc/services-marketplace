@@ -1,3 +1,9 @@
 <h1><%= @service.title %></h1>
 <p><%= number_to_currency(@service.price) %></p>
 <p><%= @service.description %></p>
+
+<% if user_signed_in? %>
+  <%= link_to "Contratar", new_service_contract_path(@service) %>
+<% else %>
+  <%= link_to "Entrar", new_user_session_path %> para contratar este serviço.
+<% end %>

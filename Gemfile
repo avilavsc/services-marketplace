@@ -57,6 +57,9 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  # Webmock e factory bot
+  gem "factory_bot_rails"
+  gem "webmock"
 end
 
 # Use Devise for authentication [https://github.com/heartcombo/devise]
@@ -64,3 +67,6 @@ gem "devise"
 
 # Search with ransack [https://activerecord-hackery.github.io/ransack]
 gem "ransack"
+
+# Stripe
+gem "stripe"

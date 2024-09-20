@@ -1,0 +1,6 @@
+<h1>Contratar Serviço: <%= @service.title %></h1>
+<p>Preço: <%= number_to_currency(@service.price) %></p>
+
+<%= form_with url: service_contracts_path(@service), data: { turbo: false } do |form| %>
+  <%= form.submit "Pagar e Contratar" %>
+<% end %>

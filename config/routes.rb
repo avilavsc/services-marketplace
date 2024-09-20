@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
+  # Defines the root path route ("/")
+  root "home#index"
+
   devise_for :users
-  resources :services, only: [ :index, :new, :create, :show ]
+
+  resources :services, only: [ :index, :new, :create, :show ] do
+    resources :contracts, only: [ :new, :create ] do
+      collection do
+        get "success", to: "contracts#success"
+        get "cancel", to: "contracts#cancel"
+      end
+    end
+  end
+
+  resources :contracts, only: [ :show ]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -11,7 +24,4 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-  # Defines the root path route ("/")
-  root "home#index"
 end
