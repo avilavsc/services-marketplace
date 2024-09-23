@@ -1,9 +1,16 @@
-<h1><%= @service.title %></h1>
-<p><%= number_to_currency(@service.price) %></p>
-<p><%= @service.description %></p>
-
-<% if user_signed_in? %>
-  <%= link_to "Contratar", new_service_contract_path(@service) %>
-<% else %>
-  <%= link_to "Entrar", new_user_session_path %> para contratar este serviço.
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h1><%= @service.title %></h1>
+      <p><%= number_to_currency(@service.price) %></p>
+      <p><%= @service.description %></p>
+    </div>
+    <div class="col-md-4">
+      <% if user_signed_in? %>
+        <%= link_to "Contratar", new_service_contract_path(@service), class: "btn btn-success btn-lg" %>
+      <% else %>
+        <%= link_to "Entrar", new_user_session_path %> para contratar este serviço.
+      <% end %>
+    </div>
+  </div>
+</div>

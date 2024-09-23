@@ -18,8 +18,10 @@
   </head>
 
   <body>
-    <%= render "layouts/partials/notifications" %>
-
-    <%= yield %>
+    <%= render "layouts/partials/navbar" %>
+    <div class="container py-4">
+      <%= render "layouts/partials/notifications" %>
+      <%= yield %>
+    </div>
   </body>
 </html>

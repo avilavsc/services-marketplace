@@ -70,3 +70,7 @@ gem "ransack"
 
 # Stripe
 gem "stripe"
+
+gem "bootstrap", "~> 5.3"
+
+gem "sassc-rails", "~> 2.1"
