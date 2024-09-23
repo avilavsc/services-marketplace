@@ -1,6 +1,27 @@
-<h1>Contratar Serviço: <%= @service.title %></h1>
-<p>Preço: <%= number_to_currency(@service.price) %></p>
+<div class="row">
+  <div class="col-md-8">
+    <h2>Contratar Serviço: <%= @service.title %></h2>
+    <div class="service-details">
+      <p><strong>Provedor: </strong> <%= @service.user.email %></p>
+      <p><strong>Descrição: </strong> <%= @service.description %></p>
+      <p><strong>Preço: </strong> <%= number_to_currency(@service.price) %></p>
+    </div>
+    <div class="d-grid">
+      <%= button_to "Pagar e Contratar",
+            service_contracts_path(@service),
+            data: { turbo: false },
+            class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
 
-<%= form_with url: service_contracts_path(@service), data: { turbo: false } do |form| %>
-  <%= form.submit "Pagar e Contratar" %>
-<% end %>
+  <div class="col-md-4">
+    <div class="alert alert-info">
+      <strong>Pagamento seguro!</strong>
+      <p>Todas as transações são protegidas pela API da Stripe.</p>
+    </div>
+
+    <div class="terms">
+      <p>Ao contratar este serviço, você concorda com nossos <a href="/terms">Termos de Uso</a> e <a href="/refund-policy">Política de Reembolso</a>.</p>
+    </div>
+  </div>
+</div>

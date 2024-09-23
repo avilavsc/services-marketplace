@@ -1,13 +1,10 @@
 class ContractsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_service, only: [ :new, :create, :success, :cancel ]
+  before_action :set_contract, only: [ :destroy ]
 
   def index
-    @contracts = current_user.contracts
-  end
-
-  def show
-    @contract = current_user.contracts.find(params[:id])
+    @contracts = current_user.contracts.includes(:service)
   end
 
   def new
@@ -26,12 +23,21 @@ class ContractsController < ApplicationController
     redirect_to session.url, allow_other_host: true
   end
 
+  def destroy
+    if @contract.status == "pending"
+      @contract.update(status: "canceled")
+      redirect_to contracts_path, notice: "Contrato cancelado com sucesso."
+    else
+      redirect_to contracts_path, alert: "Não é possível cancelar um contrato que já foi concluído ou cancelado."
+    end
+  end
+
   def success
     session_id = params[:session_id]
     session = Stripe::Checkout::Session.retrieve(session_id)
 
     if session.payment_status == "paid"
-      @contract = current_user.contracts.create(service: @service, status: "paid")
+      @contract = current_user.contracts.create(service: @service, status: "pending")
       redirect_to @contract, notice: "Serviço contratado com sucesso!"
     else
       redirect_to @service, alert: "Falha ao contratar o serviço."
@@ -43,6 +49,10 @@ class ContractsController < ApplicationController
   end
 
   private
+
+  def set_contract
+    @contract = current_user.contracts.find(params[:id])
+  end
 
   def set_service
     @service = Service.find(params[:service_id])

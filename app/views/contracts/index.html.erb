@@ -1,0 +1,28 @@
+<h1>Meus Contratos</h1>
+
+<% if @contracts.any? %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Serviço</th>
+        <th>Provedor</th>
+        <th>Data da Contratação</th>
+        <th>Status</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contracts.each do |contract| %>
+        <tr>
+          <td><%= link_to contract.service.title, contract.service %></td>
+          <td><%= contract.service.user.email %></td>
+          <td><%= contract.created_at.strftime("%d/%m/%Y") %></td>
+          <td><%= status_badge(contract) %></td>
+          <td><%= action_button_for_contract(contract) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Você ainda não contratou nenhum serviço.</p>
+<% end %>
