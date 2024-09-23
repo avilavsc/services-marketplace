@@ -1,9 +1,37 @@
-<h1>Bem-vindo ao Marketplace de Serviços</h1>
-<% if user_signed_in? %>
-  <p>Você está logado como <%= current_user.email %></p>
-  <%= link_to 'Sair', destroy_user_session_path,
-    data: { "turbo-method": :delete } %>
-<% else %>
-  <%= link_to 'Entrar', new_user_session_path %> ou
-  <%= link_to 'Registrar', new_user_registration_path %>
-<% end %>
+<div class="jumbotron jumbotron-fluid bg-primary text-white">
+  <div class="container text-center py-5">
+    <h1 class="display-4">Bem-vindo ao Marketplace de Serviços</h1>
+    <p class="lead mb-4">Conectando clientes com provedores de serviços profissionais em diversas áreas.</p>
+    <%= link_to "Explore nossos Serviços", services_path, class: "btn btn-light btn-lg" %>
+    <% unless user_signed_in? %>
+      <%= link_to "Cadastre-se Agora", new_user_registration_path, class: "btn btn-success btn-lg ms-3" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="text-center mt-5">
+  <div class="mt-5">
+    <h2>Serviços em Destaque</h2>
+    <div class="row">
+      <% @featured_services.each do |service| %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to service.title, service %></h5>
+              <p class="card-text"><%= truncate(service.description, length: 100) %></p>
+              <p><strong>Preço:</strong> <%= number_to_currency(service.price) %></p>
+              <%= link_to "Ver detalhes", service_path(service), class: "btn btn-info" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <% if user_signed_in? %>
+    <div class="mt-5">
+      <h3>Acessar</h3>
+      <%= link_to "Meus Contratos", contracts_path, class: "btn btn-secondary btn-lg" %>
+    </div>
+  <% end %>
+</div>
