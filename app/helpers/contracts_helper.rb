@@ -14,6 +14,8 @@ module ContractsHelper
     case contract.status
     when "pending"
       link_to "Cancelar", contract_path(contract), class: "btn btn-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja cancelar este contrato?" }
+    when "completed"
+      link_to "Avaliar", new_service_review_path(contract.service), class: "btn btn-primary btn-sm"
     end
   end
 end

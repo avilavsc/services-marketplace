@@ -4,7 +4,25 @@
       <h1><%= @service.title %></h1>
       <p><%= number_to_currency(@service.price) %></p>
       <p><%= @service.description %></p>
+
+      <div class="avaliacoes">
+        <h2>Avaliações</h2>
+
+        <% if @service.reviews.any? %>
+          <% @service.reviews.each do |review| %>
+            <div class="review">
+              <strong><%= review.user.email %></strong>
+              <p>Nota: <%= review.rating %>/5</p>
+              <p><%= review.content %></p>
+              <hr>
+            </div>
+          <% end %>
+        <% else %>
+          <p>Nenhuma avaliação ainda.</p>
+        <% end %>
+      </div>
     </div>
+
     <div class="col-md-4">
       <% if user_signed_in? %>
         <%= link_to "Contratar", new_service_contract_path(@service), class: "btn btn-success btn-lg" %>
