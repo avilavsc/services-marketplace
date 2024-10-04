@@ -15,6 +15,6 @@ class UserMailer < ApplicationMailer
     @service = contract.service
     @provider = @service.user
 
-    mail(to: @provider.email, subject: 'Novo Serviço Contratado')
+    mail(to: @provider.email, subject: "Novo Serviço Contratado")
   end
 end
