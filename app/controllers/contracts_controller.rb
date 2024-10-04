@@ -38,7 +38,9 @@ class ContractsController < ApplicationController
 
     if session.payment_status == "paid"
       @contract = current_user.contracts.create(service: @service, status: "pending")
-      redirect_to @contract, notice: "Serviço contratado com sucesso!"
+      UserMailer.contract_confirmation(@contract).deliver_now
+      UserMailer.notify_provider(@contract).deliver_now
+      redirect_to contracts_path, notice: "Serviço contratado com sucesso!"
     else
       redirect_to @service, alert: "Falha ao contratar o serviço."
     end

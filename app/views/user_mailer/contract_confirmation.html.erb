@@ -1,0 +1,9 @@
+<h1>Confirmação de Contratação</h1>
+
+<p>Olá <%= @user.email %>,</p>
+
+<p>Você contratou o serviço "<%= @service.title %>".</p>
+<p>Provedor: <%= @provider.email %></p>
+<p>Preço: <%= number_to_currency(@service.price) %></p>
+
+<p>Obrigado por utilizar nosso marketplace!</p>

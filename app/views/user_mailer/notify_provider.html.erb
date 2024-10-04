@@ -1,0 +1,8 @@
+<h1>Novo Serviço Contratado</h1>
+
+<p>Olá <%= @provider.email %>,</p>
+
+<p>O serviço "<%= @service.title %>" foi contratado por <%= @contract.user.email %>.</p>
+<p>Preço: <%= number_to_currency(@service.price) %></p>
+
+<p>Acesse seu dashboard para mais detalhes.</p>
