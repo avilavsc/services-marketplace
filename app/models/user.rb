@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :services, dependent: :destroy
   has_many :contracts, dependent: :destroy
   has_many :reviews, dependent: :destroy
+
+  enum :role, { client: "client", provider: "provider" }
 end
