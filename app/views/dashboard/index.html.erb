@@ -1,0 +1,31 @@
+<h1>Bem-vindo, <%= current_user.email %>!</h1>
+
+<p>Esta é a sua área de provedor, onde você pode gerenciar seus serviços, contratos e acompanhar o desempenho de suas ofertas no marketplace.</p>
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>Gerencia Serviços</h3>
+    <p>Aqui você pode criar, editar ou excluir seus serviços.</p>
+    <%= link_to "Gerenciar Meus Serviços", services_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="col-md-6">
+    <h3>Ver Contratos</h3>
+    <p>Veja todos os contratos feitos para seus pedidos e marque-os como conluídos.</p>
+    <%= link_to "Ver Contratos", contracts_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>Avaliações</h3>
+    <p>Visualize e responda a avaliações feitas pelos clientes sobre seus serviços.</p>
+    <%= link_to "Ver Avaliações", root_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="col-md-6">
+    <h3>Relatórios de Desempenho</h3>
+    <p>Acompanhe o desempenho dos seus serviços através de relatórios detalhados.</p>
+    <%= link_to 'Ver Relatórios', root_path, class: 'btn btn-primary' %>
+  </div>
+</div>

@@ -3,19 +3,22 @@ class ServicesController < ApplicationController
   before_action :set_service, only: [ :show ]
 
   def index
-    @q = Service.ransack(params[:q])
+    @q = policy_scope(Service).ransack(params[:q])
     @services = @q.result
   end
 
   def show
+    authorize @service
   end
 
   def new
     @service = current_user.services.build
+    authorize @service
   end
 
   def create
     @service = current_user.services.build(service_params)
+    authorize @service
     if @service.save
       redirect_to @service, notice: "Serviço publicado com sucesso!"
     else

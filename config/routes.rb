@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  # Defines the root path route ("/")
+  devise_for :users
+
   root "home#index"
 
-  devise_for :users
+  authenticated :user, ->(user) { user.provider? } do
+    get "dashboard", to: "dashboard#index", as: :provider_dashboard
+  end
 
   resources :services, only: [ :index, :new, :create, :show ] do
     resources :reviews, only: [ :new, :create ]

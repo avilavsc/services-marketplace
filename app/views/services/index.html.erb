@@ -1,15 +1,25 @@
 <h1>Serviços Disponíveis</h1>
 
-<div class="col-md-4 my-3">
-  <%= search_form_for @q, html: { class: "mb-3"  } do |form| %>
-    <div class="input-group">
-      <%= form.search_field :title_or_description_cont, class: "form-control", placeholder: "Buscar Serviços" %>
-      <%= form.submit "Buscar", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-</div>
+<div class="row my-3">
+  <div class="col-md-4">
+    <%= search_form_for @q, html: { class: "mb-3"  } do |form| %>
+      <div class="input-group">
+        <%= form.search_field :title_or_description_cont, class: "form-control", placeholder: "Buscar Serviços" %>
+        <%= form.submit "Buscar", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
 
-<p>Ordenar por: <%= sort_link(@q, :title) %></p>
+  <div class="col-md-4">
+    <p>Ordenar por: <%= sort_link(@q, :title) %></p>
+  </div>
+
+  <div class="col-md-4 text-end">
+    <% if policy(Service).create? %>
+      <%= link_to "Criar Novo Serviço", new_service_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
 
 <div class="row">
   <% @services.each do |service| %>
