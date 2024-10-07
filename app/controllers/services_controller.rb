@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_action :authenticate_user!, except: [ :index, :show ]
-  before_action :set_service, only: [ :show ]
+  before_action :set_service, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @q = policy_scope(Service).ransack(params[:q])
@@ -24,6 +24,22 @@ class ServicesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @service.update(service_params)
+      redirect_to @service, notice: "Serviço editado com sucesso."
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @service.destroy
+    redirect_to services_path, notice: "Serviço excluído com sucesso."
   end
 
   private

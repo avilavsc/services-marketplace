@@ -24,9 +24,15 @@
     </div>
 
     <div class="col-md-4">
-      <% if user_signed_in? %>
+      <% if policy(@service).update? %>
+        <p>Você é o provedor deste serviço.</p>
+        <%= link_to "Editar Serviço", edit_service_path(@service), class: "btn btn-primary" %>
+        <%= link_to "Exluir Serviço", service_path(@service), class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este serviço?" } %>
+      <% end %>
+      <% if  policy(@service).contract_service? %>
         <%= link_to "Contratar", new_service_contract_path(@service), class: "btn btn-success btn-lg" %>
-      <% else %>
+      <% end %>
+      <% if !user_signed_in? %>
         <%= link_to "Entrar", new_user_session_path %> para contratar este serviço.
       <% end %>
     </div>

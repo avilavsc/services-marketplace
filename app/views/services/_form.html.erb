@@ -1,0 +1,22 @@
+<div class="row mt-4">
+  <div class="col-md-6">
+    <%= form_with model: @service do |form| %>
+     <div class="mb-3">
+       <%= form.label :title, "Título", class: "form-label" %>
+        <%= form.text_field :title, class: "form-control" %>
+     </div>
+        
+      <div class="mb-3">
+        <%= form.label :description, "Descrição", class: "form-label" %>
+        <%= form.text_area :description, class: "form-control" %>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <%= form.label :price, "Preço", class: "form-label" %>
+        <%= form.number_field :price, step: 0.01, class: "form-control" %>
+      </div>
+
+      <%= form.submit "Publicar", class: "btn btn-primary" %>
+    <% end %>   
+  </div>
+</div>

@@ -27,4 +27,12 @@ class ServicePolicy < ApplicationPolicy
   def create?
     user&.provider?
   end
+
+  def update?
+    user&.provider? && service.user == user
+  end
+
+  def contract_service?
+    user&.client?
+  end
 end

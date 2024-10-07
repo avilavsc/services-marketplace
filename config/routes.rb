@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get "dashboard", to: "dashboard#index", as: :provider_dashboard
   end
 
-  resources :services, only: [ :index, :new, :create, :show ] do
+  resources :services do
     resources :reviews, only: [ :new, :create ]
     resources :contracts, only: [ :new, :create ] do
       collection do
