@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Dashboards", type: :request do
-  let(:provider_user) { create(:user, role: "provider")}
+  let(:provider_user) { create(:user, role: "provider") }
 
   before do
     sign_in provider_user
